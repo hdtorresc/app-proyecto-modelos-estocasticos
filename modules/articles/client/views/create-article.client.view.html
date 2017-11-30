@@ -1,0 +1,176 @@
+<section data-ng-controller="ArticlesController">
+
+  <div class="page-header">
+    <h1 class="titulo_grande">Calculadora</h1>
+  </div>
+
+  <div class="container">
+    <h2>Bienvenido a la calculadora de teoría de colas</h2>
+    <p><strong>Seleccione</strong> uno de los modelos para calcular los datos de rendimiento.</p>
+    <div class="panel-group" id="accordion" close-others="oneAtATime" style="margin-top:30px">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapse1" class="text_comic">M / M / 1</a>
+          </h4>
+        </div>
+        <div id="collapse1" class="panel-collapse collapse in">
+          <div class="panel-body">         
+
+            <div class="row">
+              <div class="col-md-4">
+                <p><strong class="titulo">Datos:</strong></p>
+                <div class="col-xs-6" class="text-center">
+                  <label for="ex1">λ</label>
+                  <input class="form-control" id="lamda_cal_mm1" type="text" min="1" ng-model="cal_mm1_lambda" placeholder="Ingrese λ">
+                </div>
+                <div class="col-xs-6">
+                  <label for="ex1">µ</label>
+                  <input class="form-control" id="miu_cal_mm1" type="text" min="1" placeholder="Ingrese µ" ng-model="cal_mm1_miu">
+                </div>
+                <div class="text-center" style="margin-top:90px"> 
+                  <button class="btn btn-primary btn-responsive btninter" data-ng-click="calcular_mm1(cal_mm1_lambda,cal_mm1_miu);">Calcular</button> 
+                </div>
+              </div>
+              <div class="col-md-6">
+                <p><strong class="titulo">Valores de rendimiento:</strong></p>      
+                <div style="margin-top:20px"> <strong class="verde">  L </strong> (unidades en el sistema) = <strong class="azul"> {{cal_mm1_L}} </strong> </div>
+                <div> <strong class="verde">  Lq </strong> (unidades en la cola) = <strong class="azul"> {{cal_mm1_Lq}} </strong> </div>
+                <div> <strong class="verde">  W </strong> (tiempo en el sistema) = <strong class="azul"> {{cal_mm1_W}} </strong> </div>
+                <div> <strong class="verde">  Wq </strong> (tiempo en la cola) = <strong class="azul"> {{cal_mm1_Wq}} </strong> </div>
+                <div> <strong class="verde">  p0 </strong> (probabilidad de sistema en ocio) = <strong class="azul"> {{cal_mm1_p0}} % </strong> </div>
+                <div> <strong class="verde">  ρ </strong> (utilizacion de los servidores) = <strong class="azul"> {{cal_mm1_p}} </strong> </div>   
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="panel panel-default" style="margin-top:50px">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapse2" class="text_comic">M / M / c</a>
+          </h4>
+        </div>
+        <div id="collapse2" class="panel-collapse collapse in">
+          <div class="panel-body">
+          
+            <div class="row">
+              <div class="col-md-4">
+                <p><strong class="titulo">Datos:</strong></p>
+                <div class="col-xs-6" class="text-center">
+                  <label for="ex1">λ</label>
+                  <input class="form-control" id="lamda_cal_mmc" type="text" min="1" ng-model="cal_mmc_lambda" placeholder="Ingrese λ">
+                </div>
+                <div class="col-xs-6">
+                  <label for="ex1">µ</label>
+                  <input class="form-control" id="miu_cal_mmc" type="text" min="1" ng-model="cal_mmc_miu" placeholder="Ingrese µ">
+                </div>
+                <div class="col-xs-6" style="margin-top:20px">
+                  <label for="ex1">c</label>
+                  <input class="form-control" id="c_cal_mmc" type="text" min="1" ng-model="cal_mmc_c" placeholder="Ingrese c">
+                </div>
+                <div class="text-center" style="margin-top:115px"> 
+                  <button class="btn btn-primary btn-responsive btninter" data-ng-click="calcular_mmc(cal_mmc_lambda, cal_mmc_miu, cal_mmc_c);">Calcular</button> 
+                </div>
+              </div>
+              <div class="col-md-6">
+                <p><strong class="titulo">Valores de rendimiento:</strong></p>
+                <div style="margin-top:20px"> <strong class="verde"> L </strong> (unidades en el sistema) = <strong class="azul"> {{cal_mmc_L}} </strong> </div>
+                <div> <strong class="verde"> Lq </strong> (unidades en la cola) = <strong class="azul"> {{cal_mmc_Lq}} </strong> </div>
+                <div> <strong class="verde"> W </strong> (tiempo en el sistema) = <strong class="azul"> {{cal_mmc_W}} </strong> </div>
+                <div> <strong class="verde"> Wq </strong> (tiempo en la cola) = <strong class="azul"> {{cal_mmc_Wq}} </strong> </div>
+                <div> <strong class="verde"> p0 </strong> (probabilidad de sistema en ocio) = <strong class="azul"> {{cal_mmc_p0*100}} % </strong> </div>
+                <div> <strong class="verde"> ρ </strong> (utilizacion de los servidores) = <strong class="azul"> {{cal_mmc_p}} </strong> </div>              
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <style>
+      .text_comic {
+        font-size: 135%; 
+        font-weight:bold; 
+      }
+      .verde {
+        font-family: "Comic Sans MS";
+        color: #3CB371;
+        font-size: 120%;
+      }
+      .azul {
+        text-indent: 50px;
+        font-family: "Comic Sans MS";
+        color: #6495ED;
+        font-size: 120%;
+      }
+      .amarillo {
+        font-family: "Comic Sans MS"
+        color: #DAA520;
+        font-size: 120%;
+      }
+      .titulo {
+        font-size: 135%;
+      }
+      .identacion {
+        text-indent: 500px;
+      }
+      .titulo_grande {
+        color: #6495ED;
+      }
+    </style>
+    
+      <div class="panel panel-default" style="margin-top:50px">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapse3" class="text_comic"> M / M / c / k </a> 
+          </h4>
+        </div>
+        <div id="collapse3" class="panel-collapse collapse in">
+          <div class="panel-body">
+
+            <div class="row">
+              <div class="col-md-4">
+                <p><strong class="titulo">Datos:</strong></p>
+                <div class="col-xs-6" class="text-center">
+                  <label for="ex1">λ</label>
+                  <input class="form-control" id="lamda_cal_mmck" type="text" min="1" ng-model="cal_mmck_lambda" placeholder="Ingrese λ">
+                </div>
+                <div class="col-xs-6">
+                  <label for="ex1">µ</label>
+                  <input class="form-control" id="mu_cal_mmck" type="text" min="1" ng-model="cal_mmck_mu" placeholder="Ingrese µ">
+                </div>
+                <div class="col-xs-6" style="margin-top:20px">
+                  <label for="ex1">c</label>
+                  <input class="form-control" id="c_cal_mmck" type="text" min="1" ng-model="cal_mmck_c" placeholder="Ingrese c">
+                </div>
+                <div class="col-xs-6" style="margin-top:20px">
+                  <label for="ex1">k</label>
+                  <input class="form-control" id="k_cal_mmck" type="text" min="1" ng-model="cal_mmck_k" placeholder="Ingrese k">
+                </div>
+                <div class="col-xs-12" style="height:30px;"></div>
+                <div class="text-center"> 
+                  <button class="btn btn-primary btn-responsive btninter" data-ng-click="calcular_mmck(cal_mmck_lambda, cal_mmck_mu, cal_mmck_c, cal_mmck_k);">Calcular</button> 
+                </div>
+              </div>
+              <div class="col-md-6">
+                <p><strong class="titulo">Valores de rendimiento:</strong></p>
+                <div style="margin-top:20px"> <strong class="verde"> L </strong> (unidades en el sistema) = <strong class="azul"> {{cal_mmck_L}} </strong> </div>
+                <div> <strong class="verde"> Lq </strong> (unidades en la cola) = <strong class="azul"> {{cal_mmck_Lq}} </strong> </div>
+                <div> <strong class="verde"> W </strong> (tiempo en el sistema) = <strong class="azul"> {{cal_mmck_W}} </strong> </div>
+                <div> <strong class="verde"> Wq </strong> (tiempo en la cola) = <strong class="azul"> {{cal_mmck_Wq}} </strong> </div>
+                <div> <strong class="verde"> p0 </strong> (probabilidad de sistema en ocio) = <strong class="azul"> {{cal_mmck_p0*100}} % </strong> </div>
+                <div> <strong class="verde"> ρ </strong> (utilizacion de los servidores) = <strong class="azul" > {{cal_mmck_p}} </strong> </div>              
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div> 
+  </div>
+
+
+</section>

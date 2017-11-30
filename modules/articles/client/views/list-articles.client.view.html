@@ -1,0 +1,116 @@
+<section data-ng-controller="ArticlesController" data-ng-init="reiniciar()">
+  <div class="page-header">
+    <h1>Bienvenido !!!</h1>
+  </div>
+
+  <div class="row" align="center">
+    <div class="col-md-10 col-md-offset-1">
+      <div class="well">
+        <p>
+          <strong>Nacho</strong> se encuentra cursando la asignatura de Modelos estocásticos y simulación en computación y comunicaciones. Actualmente, está interesado por el tema de teoría de colas (filas) ya que viene de ver una super clase sobre el tema. Al llegar a casa, Nacho se se da cuenta que lo visto en clase se puede aplicar para crear un gestionador de tareas informáticas. Para ello plantea el sigueinte escenario : Un dispacth debe decidir a cuál de tres nodos enviar una tarea para ser procesada. Los nodos trabajan a velocidades diferentes y reciben tareas a velocidades también diferentes. Dos de los nodos están basados en un sólo servidor y el nodo restante cuenta con tres servidores. El dispacth busca que la tarea se procese en el menor de los tiempos. Teniendo en cuenta las velocidades presentadas para cada servidor a contiación, ¿podrías indicar a cuál servidor debería el dispacth enviar la tarea?
+        </p>
+        <p>Para ello selecciona una de las tres posibilidades y da click en el boton <strong>Calcular</strong> para ver si acertaste.</p>
+        <p>Da click en el boton <strong>'Reiniciar'</strong> si desea generar un nuevo escenario.</p>
+      </div>
+    </div>
+  </div>
+  <div class="row" align="center">
+    <div class="col-md-10 col-md-offset-1">
+      <img alt="estudiante" height="150" width="150" class="img-responsive text-center" src="modules/core/img/brand/estudiante.png" />
+    </div>
+  </div>
+
+  <div class="jumbotron text-center" style="margin-top:30px" >
+    
+    <div align="center">
+      <img  alt="estudiante" height="150" width="150" class="img-responsive text-center" src="modules/core/img/brand/compu.png" style="margin-top:10px" />
+    </div>
+
+    <!--
+    <div align="center">
+      <img  alt="estudiante" height="100" width="100" class="img-responsive text-center" src="modules/core/img/brand/conmu2.png" style="margin-top:50px" />
+    </div>
+    -->
+    <div class="row" align="center" style="margin-top:60px" >    
+      <div class="col-md-4">
+        <img alt="estudiante" height="70" width="70" class="img-responsive text-center" src="modules/core/img/brand/servidor4.png" />
+        <br>
+        <div>Velocidad de llegada = <strong class="azul">{{lambda_1}}</strong> tareas / seg</div>
+        <div>Velocidad de procesamiento = <strong class="azul">{{miu_1}}</strong> tareas / seg</div>
+      </div>
+      <div class="col-md-4">
+        <img alt="estudiante" height="150" width="150" class="img-responsive text-center" src="modules/core/img/brand/servidor.png" />
+        <br>
+        <div>Velocidad de llegada = <strong class="azul">{{lambda_2}}</strong> tareas / seg</div>
+        <div>Velocidad de procesamiento = <strong class="azul"> {{miu_2}}</strong> tareas / seg</div>
+      </div>
+      <div class="col-md-4">
+        <img alt="estudiante" height="150" width="150" class="img-responsive text-center" src="modules/core/img/brand/servidores.png" />
+        <br>
+        <div>Velocidad de llegada = <strong class="azul"> {{lambda_3}}</strong> tareas / seg</div>
+        <div>Velocidad de procesamiento = <strong class="azul">{{miu_3}}</strong> tareas / seg</div>
+      </div>
+    </div>
+    <div class="text-center" style="margin-top:40px"> 
+      <label>Elige una de las tres opciones</label> &nbsp
+      <select ng-model="servidor_seleccionado" ng-options="servidor as servidor.nombre for servidor in servidores track by servidor.idServidor" >
+      </select> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+      <button class="btn btn-primary btn-responsive btninter" data-ng-click="calcular_tres_servidores();">Calcular</button>  &nbsp &nbsp &nbsp
+      <button class="btn btn-primary btn-responsive btninter right" data-ng-click="reiniciar();">Reiniciar</button> 
+    </div>
+  </div>
+
+
+  <style>
+    .sample-show-hide {
+      transition: all linear 0.5s;
+    }
+    .sample-show-hide.ng-hide {
+      opacity: 0;
+    }
+    .azul {
+      font-family: "Comic Sans MS";
+      color: #4682B4;
+      font-size: 120%;
+    }
+    .verde {
+      font-family: "Comic Sans MS";
+      color: #3CB371;
+      font-size: 120%;
+    }
+    .titulo {
+      font-size: 135%;
+    }
+  </style>
+
+  <div class="row sample-show-hide" ng-hide="visible==0" style="margin-top:50px">
+    <div class="col-md-4">
+      <p><strong class="titulo">Valores de rendimiento servidor 1:</strong></p>      
+      <div style="margin-top:20px"> <strong class="verde"> L </strong> (unidades en el sistema) = <strong class="azul"> {{L_1}} </strong> tareas</div>
+      <div> <strong class="verde"> Lq </strong> (unidades en la cola) = <strong class="azul"> {{Lq_1}} </strong> tareas</div>
+      <div> <strong class="verde"> W </strong> (tiempo en el sistema) = <strong class="azul"> {{W_1}} </strong> segs</div>
+      <div> <strong class="verde"> Wq </strong> (tiempo en la cola) = <strong class="azul"> {{Wq_1}} </strong> segs</div>
+      <div> <strong class="verde"> p0 </strong> (probabilidad de sistema en ocio) = <strong class="azul"> {{p0_1}} % </strong> </div>
+    </div>
+    <div class="col-md-4">
+      <p><strong class="titulo">Valores de rendimiento servidor 2:</strong></p>      
+      <div style="margin-top:20px"> <strong class="verde"> L </strong> (unidades en el sistema) = <strong class="azul"> {{L_2}} </strong> tareas</div>
+      <div> <strong class="verde"> Lq </strong> (unidades en la cola) = <strong class="azul"> {{Lq_2}} </strong> tareas</div>
+      <div> <strong class="verde"> W </strong> (tiempo en el sistema) = <strong class="azul"> {{W_2}} </strong> segs</div>
+      <div> <strong class="verde"> Wq </strong> (tiempo en la cola) = <strong class="azul"> {{Wq_2}} </strong> segs</div>
+      <div> <strong class="verde"> p0 </strong> (probabilidad de sistema en ocio) = <strong class="azul"> {{p0_2}} % </strong> </div>
+    </div>
+    <div class="col-md-4">
+      <p><strong class="titulo">Valores de rendimiento servidores 3:</strong></p>      
+      <div style="margin-top:20px"> <strong class="verde"> L </strong> (unidades en el sistema) = <strong class="azul"> {{L_3}} </strong> tareas</div>
+      <div> <strong class="verde"> Lq </strong> (unidades en la cola) = <strong class="azul"> {{Lq_3}} </strong> tareas</div>
+      <div> <strong class="verde"> W </strong> (tiempo en el sistema) = <strong class="azul"> {{W_3}} </strong> segs</div>
+      <div> <strong class="verde"> Wq </strong> (tiempo en la cola) = <strong class="azul"> {{Wq_3}} </strong> segs</div>
+      <div> <strong class="verde"> p0 </strong> (probabilidad de sistema en ocio) = <strong class="azul"> {{p0_3*100}} % </strong> </div>
+    </div>
+  </div>
+  
+
+<br style="margin-top:20px">
+<strong> Hernan D. Torres C. </strong> 
+</section>
